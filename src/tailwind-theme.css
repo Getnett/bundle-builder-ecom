@@ -1,0 +1,95 @@
+/*
+ * Tailwind v4 semantic theme.
+ * Components should use these names instead of primitive variables or raw
+ * design values.
+ */
+
+@theme inline {
+  --font-sans: var(--primitive-font-body);
+  --font-body: var(--primitive-font-body);
+  --font-heading: var(--primitive-font-heading);
+  --font-button: var(--primitive-font-button);
+
+  --color-canvas: var(--primitive-color-surface);
+  --color-surface: var(--primitive-color-surface);
+  --color-review-surface: var(--primitive-color-review-surface);
+  --color-selected-surface: var(--primitive-color-selected-surface);
+  --color-control-surface: var(--primitive-color-control);
+  --color-disabled-surface: var(--primitive-color-disabled);
+
+  --color-foreground: var(--primitive-color-ink);
+  --color-foreground-strong: var(--primitive-color-obsidian);
+  --color-foreground-muted: var(--primitive-color-muted);
+  --color-foreground-subtle: var(--primitive-color-subtle);
+  --color-foreground-faint: var(--primitive-color-faint);
+
+  --color-brand: var(--primitive-color-brand);
+  --color-brand-hover: var(--primitive-color-brand-hover);
+  --color-brand-soft: var(--primitive-color-brand-soft);
+  --color-on-brand: var(--primitive-color-surface);
+  --color-selected: var(--primitive-color-selected);
+  --color-success: var(--primitive-color-success);
+  --color-promotion: var(--primitive-color-promotion);
+  --color-checkout: var(--primitive-color-checkout);
+  --color-checkout-hover: var(--primitive-color-checkout-hover);
+  --color-link: var(--primitive-color-link);
+
+  --color-border: var(--primitive-color-border);
+  --color-border-strong: var(--primitive-color-border-strong);
+  --color-swatch-border: var(--primitive-color-swatch-border);
+  --color-swatch-white: var(--primitive-color-swatch-white);
+  --color-swatch-grey: var(--primitive-color-swatch-grey);
+  --color-swatch-black: var(--primitive-color-swatch-black);
+  --color-swatch-selected: var(--primitive-color-swatch-selected);
+  --color-swatch-selected-surface: var(
+    --primitive-color-swatch-selected-surface
+  );
+  --border-width-hairline: var(--primitive-border-hairline);
+
+  --text-eyebrow: var(--primitive-text-eyebrow-size);
+  --text-eyebrow--line-height: var(--primitive-text-eyebrow-line);
+  --text-caption: var(--primitive-text-caption-size);
+  --text-caption--line-height: var(--primitive-text-caption-line);
+  --text-body: var(--primitive-text-body-size);
+  --text-body--line-height: var(--primitive-text-body-line);
+  --text-product-title: var(--primitive-text-product-title-size);
+  --text-product-title--line-height: var(
+    --primitive-text-product-title-line
+  );
+  --text-control: var(--primitive-text-control-size);
+  --text-control--line-height: var(--primitive-text-control-line);
+  --text-step: var(--primitive-text-step-size);
+  --text-step--line-height: var(--primitive-text-step-line);
+  --text-section: var(--primitive-text-section-size);
+  --text-section--line-height: var(--primitive-text-section-line);
+  --text-total: var(--primitive-text-total-size);
+  --text-total--line-height: var(--primitive-text-total-line);
+  --text-hero: var(--primitive-text-hero-size);
+  --text-hero--line-height: var(--primitive-text-hero-line);
+
+  --tracking-eyebrow: var(--primitive-text-eyebrow-tracking);
+
+  --radius-chip: var(--primitive-radius-chip);
+  --radius-badge: var(--primitive-radius-badge);
+  --radius-control: var(--primitive-radius-control);
+  --radius-image: var(--primitive-radius-image);
+  --radius-button: var(--primitive-radius-button);
+  --radius-card: var(--primitive-radius-card);
+  --radius-panel: var(--primitive-radius-panel);
+
+  --spacing-variant-chip: var(--primitive-size-variant-chip);
+  --spacing-stepper-button: var(--primitive-size-stepper-button);
+  --spacing-step-icon: var(--primitive-size-step-icon);
+  --spacing-review-thumbnail: var(--primitive-size-review-thumbnail);
+  --spacing-product-card: var(--primitive-size-product-card);
+  --spacing-product-image: var(--primitive-size-product-image);
+  --spacing-product-visual: var(--primitive-size-product-visual);
+  --spacing-product-visual-stacked: var(
+    --primitive-size-product-visual-stacked
+  );
+  --spacing-guarantee: var(--primitive-size-guarantee);
+  --spacing-review-price: var(--primitive-width-review-price);
+
+  --container-review-sidebar: var(--primitive-width-review-sidebar);
+  --container-bundle: var(--primitive-width-builder);
+}

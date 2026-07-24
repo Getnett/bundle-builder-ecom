@@ -1,0 +1,281 @@
+{
+  "version": 1,
+  "title": "Let's get started!",
+  "reviewTitle": "Your security system",
+  "reviewSubtitle": "Review your personalized protection system designed to keep what matters most safe.",
+  "steps": [
+    {
+      "id": "cameras",
+      "kind": "products",
+      "stepNumber": 1,
+      "title": "Choose your cameras",
+      "iconUrl": "/assets/bundle-builder/icon-cameras.svg",
+      "reviewGroup": "Cameras",
+      "ctaLabel": "Next: Choose your plan",
+      "products": [
+        {
+          "id": "cam-v4",
+          "name": "Wyze Cam v4",
+          "description": "The clearest Wyze Cam ever made.",
+          "desktopDescriptionLines": [
+            "The clearest Wyze Cam ever made.",
+            ""
+          ],
+          "imageUrl": "/assets/bundle-builder/wyze-cam-v4.png",
+          "learnMoreUrl": "https://www.wyze.com/products/wyze-cam-v4",
+          "badge": "Save 22%",
+          "unitPrice": 27.98,
+          "compareAtUnitPrice": 35.98,
+          "maxQuantity": 10,
+          "variants": [
+            {
+              "id": "white",
+              "sku": "cam-v4-white",
+              "label": "White",
+              "tone": "white",
+              "swatchUrl": "/assets/bundle-builder/swatch-white.png"
+            },
+            {
+              "id": "grey",
+              "sku": "cam-v4-grey",
+              "label": "Grey",
+              "tone": "grey",
+              "swatchUrl": "/assets/bundle-builder/swatch-grey.png"
+            },
+            {
+              "id": "black",
+              "sku": "cam-v4-black",
+              "label": "Black",
+              "tone": "black",
+              "swatchUrl": "/assets/bundle-builder/swatch-black.png"
+            }
+          ]
+        },
+        {
+          "id": "cam-pan-v3",
+          "name": "Wyze Cam Pan v3",
+          "description": "360° pan and 180° tilt security camera.",
+          "desktopDescriptionLines": [
+            "360° pan and 180° tilt security",
+            "camera."
+          ],
+          "imageUrl": "/assets/bundle-builder/wyze-cam-pan-v3.png",
+          "learnMoreUrl": "https://www.wyze.com/products/wyze-cam-pan-v3",
+          "badge": "Save 17%",
+          "unitPrice": 23.99,
+          "compareAtUnitPrice": 28.99,
+          "maxQuantity": 10,
+          "variants": [
+            {
+              "id": "white",
+              "sku": "cam-pan-v3-white",
+              "label": "White",
+              "tone": "white",
+              "swatchUrl": "/assets/bundle-builder/swatch-white.png"
+            },
+            {
+              "id": "black",
+              "sku": "cam-pan-v3-black",
+              "label": "Black",
+              "tone": "black",
+              "swatchUrl": "/assets/bundle-builder/swatch-black.png"
+            }
+          ]
+        },
+        {
+          "id": "cam-floodlight",
+          "name": "Wyze Cam Floodlight v2",
+          "description": "2K floodlight camera with a 160° wide-angle view for your garage.",
+          "desktopDescriptionLines": [
+            "2K floodlight camera with a 160°",
+            "wide-angle view for your garage.",
+            ""
+          ],
+          "imageUrl": "/assets/bundle-builder/wyze-cam-floodlight-v2.png",
+          "learnMoreUrl": "https://www.wyze.com/products/wyze-cam-floodlight-v2",
+          "badge": "Save 22%",
+          "unitPrice": 69.98,
+          "compareAtUnitPrice": 89.98,
+          "maxQuantity": 10,
+          "variants": [
+            {
+              "id": "white",
+              "sku": "cam-floodlight-white",
+              "label": "White",
+              "tone": "white",
+              "swatchUrl": "/assets/bundle-builder/swatch-white.png"
+            },
+            {
+              "id": "black",
+              "sku": "cam-floodlight-black",
+              "label": "Black",
+              "tone": "black",
+              "swatchUrl": "/assets/bundle-builder/swatch-black.png"
+            }
+          ]
+        },
+        {
+          "id": "cam-doorbell",
+          "sku": "cam-doorbell",
+          "name": "Wyze Duo Cam Doorbell",
+          "description": "Two cameras. Two views. Double the porch protection.",
+          "desktopDescriptionLines": [
+            "Two cameras. Two views. Double",
+            "the porch protection.",
+            ""
+          ],
+          "imageUrl": "/assets/bundle-builder/wyze-duo-cam-doorbell.png",
+          "learnMoreUrl": "https://www.wyze.com/products/wyze-duo-cam-doorbell",
+          "unitPrice": 69.98,
+          "maxQuantity": 10
+        },
+        {
+          "id": "cam-battery-pro",
+          "name": "Wyze Battery Cam Pro",
+          "description": "Protect anywhere. See everything in 2.5K HDR. No power outlet or electrician needed.",
+          "desktopDescriptionLines": [
+            "Protect anywhere. See everything",
+            "in 2.5K HDR. No power outlet or",
+            "electrician needed."
+          ],
+          "imageUrl": "/assets/bundle-builder/wyze-battery-cam-pro.png",
+          "learnMoreUrl": "https://www.wyze.com/products/wyze-battery-cam-pro",
+          "unitPrice": 89.98,
+          "maxQuantity": 10,
+          "variants": [
+            {
+              "id": "white",
+              "sku": "cam-battery-pro-white",
+              "label": "White",
+              "tone": "white",
+              "swatchUrl": "/assets/bundle-builder/swatch-white.png"
+            },
+            {
+              "id": "black",
+              "sku": "cam-battery-pro-black",
+              "label": "Black",
+              "tone": "black",
+              "swatchUrl": "/assets/bundle-builder/swatch-black.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plan",
+      "kind": "plan",
+      "stepNumber": 2,
+      "title": "Choose your plan",
+      "iconUrl": "/assets/bundle-builder/icon-plan.svg",
+      "reviewGroup": "Plan",
+      "ctaLabel": "Next: Choose your sensors",
+      "plans": [
+        {
+          "id": "cam-unlimited",
+          "iconUrl": "/assets/bundle-builder/icon-plan.svg",
+          "reviewIconUrl": "/assets/bundle-builder/icon-plan.svg",
+          "name": "Cam",
+          "highlight": "Unlimited",
+          "price": 9.99,
+          "compareAtPrice": 12.99,
+          "description": "Unlimited cameras with smart detections and cloud video history."
+        }
+      ]
+    },
+    {
+      "id": "sensors",
+      "kind": "products",
+      "stepNumber": 3,
+      "title": "Choose your sensors",
+      "iconUrl": "/assets/bundle-builder/icon-sensors.svg",
+      "reviewGroup": "Sensors",
+      "ctaLabel": "Next: Add extra protection",
+      "products": [
+        {
+          "id": "sense-motion",
+          "sku": "sense-motion",
+          "name": "Wyze Sense Motion Sensor",
+          "description": "Detects motion and alerts you instantly.",
+          "imageUrl": "/assets/bundle-builder/wyze-sense-motion-sensor.png",
+          "unitPrice": 29.99,
+          "maxQuantity": 10
+        },
+        {
+          "id": "sense-hub",
+          "sku": "sense-hub",
+          "name": "Wyze Sense Hub (Required)",
+          "description": "Connects all your sensors to the app.",
+          "imageUrl": "/assets/bundle-builder/wyze-sense-hub.png",
+          "unitPrice": 0,
+          "compareAtUnitPrice": 29.92,
+          "minQuantity": 1,
+          "maxQuantity": 10,
+          "freeLabel": "FREE"
+        }
+      ]
+    },
+    {
+      "id": "extras",
+      "kind": "products",
+      "stepNumber": 4,
+      "title": "Add extra protection",
+      "iconUrl": "/assets/bundle-builder/icon-extras.svg",
+      "reviewGroup": "Accessories",
+      "ctaLabel": "Review your system",
+      "products": [
+        {
+          "id": "microsd",
+          "sku": "microsd",
+          "name": "Wyze MicroSD Card (256GB)",
+          "description": "Class 10 / UHS-3 local backup for your cameras.",
+          "imageUrl": "/assets/bundle-builder/wyze-microsd-256.png",
+          "unitPrice": 20.98,
+          "maxQuantity": 10
+        }
+      ]
+    }
+  ],
+  "shipping": {
+    "id": "fast-shipping",
+    "name": "Fast Shipping",
+    "iconUrl": "/assets/bundle-builder/fast-shipping.svg",
+    "price": 0,
+    "compareAtPrice": 5.99,
+    "freeLabel": "FREE",
+    "contributesToSavings": false
+  },
+  "guarantee": {
+    "imageUrl": "/assets/bundle-builder/satisfaction-guarantee.png",
+    "title": "30-day hassle-free returns",
+    "description": "If you're not totally in love with the product, we will refund you 100%."
+  },
+  "financing": {
+    "monthlyPrice": 19.19
+  },
+  "initialConfiguration": {
+    "version": 1,
+    "openStepId": "cameras",
+    "selectedPlanId": "cam-unlimited",
+    "activeVariantByProduct": {
+      "cam-v4": "white",
+      "cam-pan-v3": "white",
+      "cam-floodlight": "white",
+      "cam-battery-pro": "white"
+    },
+    "quantitiesBySku": {
+      "cam-v4-white": 1,
+      "cam-v4-grey": 0,
+      "cam-v4-black": 0,
+      "cam-pan-v3-white": 2,
+      "cam-pan-v3-black": 0,
+      "cam-floodlight-white": 0,
+      "cam-floodlight-black": 0,
+      "cam-doorbell": 0,
+      "cam-battery-pro-white": 0,
+      "cam-battery-pro-black": 0,
+      "sense-motion": 2,
+      "sense-hub": 1,
+      "microsd": 2
+    }
+  }
+}

@@ -1,0 +1,86 @@
+/*
+ * Figma reference tokens for the Bundle Builder.xwxw 
+ */
+
+:root {
+  /* Color */
+  --primitive-color-brand: #4e2fd2;
+  --primitive-color-brand-hover: #4022bf;
+  --primitive-color-brand-soft: #f4f1ff;
+  --primitive-color-obsidian: #0b0d10;
+  --primitive-color-ink: #1f1f1f;
+  --primitive-color-muted: #575757;
+  --primitive-color-subtle: #6f7882;
+  --primitive-color-faint: #a8b2bd;
+  --primitive-color-border: #ced6de;
+  --primitive-color-border-strong: #9ca5af;
+  --primitive-color-swatch-border: #cccccc;
+  --primitive-color-swatch-white: #f8f8f8;
+  --primitive-color-swatch-grey: #92969c;
+  --primitive-color-swatch-black: #17181a;
+  --primitive-color-swatch-selected: #58cdb9;
+  --primitive-color-swatch-selected-surface: #f0fbf9;
+  --primitive-color-surface: #ffffff;
+  --primitive-color-review-surface: #edf4ff;
+  --primitive-color-control: #f1f4f7;
+  --primitive-color-disabled: #f1f1f2;
+  --primitive-color-selected: #4e2fd2;
+  --primitive-color-selected-surface: #fbfaff;
+  --primitive-color-success: #0aa288;
+  --primitive-color-promotion: #d83a56;
+  --primitive-color-checkout: #562bd8;
+  --primitive-color-checkout-hover: #4521bd;
+  --primitive-color-link: #0000ee;
+
+  /* Typography */
+  --primitive-font-heading:
+    "Gilroy", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --primitive-font-body:
+    "Gilroy", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --primitive-font-button:
+    "TT Norms Pro", "Gilroy", "Helvetica Neue", Arial, system-ui, sans-serif;
+
+  --primitive-text-eyebrow-size: 0.625rem;
+  --primitive-text-eyebrow-line: 1rem;
+  --primitive-text-eyebrow-tracking: 0.1em;
+  --primitive-text-caption-size: 0.75rem;
+  --primitive-text-caption-line: 1rem;
+  --primitive-text-body-size: 0.875rem;
+  --primitive-text-body-line: 1.25rem;
+  --primitive-text-product-title-size: 0.8125rem;
+  --primitive-text-product-title-line: 1rem;
+  --primitive-text-control-size: 1rem;
+  --primitive-text-control-line: 1.25rem;
+  --primitive-text-step-size: 1.375rem;
+  --primitive-text-step-line: 1.625rem;
+  --primitive-text-section-size: 1.5rem;
+  --primitive-text-section-line: 1.875rem;
+  --primitive-text-total-size: 1.5rem;
+  --primitive-text-total-line: 2rem;
+  --primitive-text-hero-size: 1.992rem;
+  --primitive-text-hero-line: 1.1;
+
+  /* Shape */
+  --primitive-radius-chip: 0.125rem;
+  --primitive-radius-badge: 0.1875rem;
+  --primitive-radius-control: 0.25rem;
+  --primitive-radius-image: 0.3125rem;
+  --primitive-radius-button: 0.4375rem;
+  --primitive-radius-card: 0.625rem;
+  --primitive-radius-panel: 0.625rem;
+
+  /* Repeated dimensions */
+  --primitive-size-variant-chip: 1.625rem;
+  --primitive-size-stepper-button: 1.25rem;
+  --primitive-size-step-icon: 1.625rem;
+  --primitive-size-review-thumbnail: 2.5rem;
+  --primitive-size-product-card: 10.5rem;
+  --primitive-size-product-image: 5rem;
+  --primitive-size-product-visual: 5.5rem;
+  --primitive-size-product-visual-stacked: 7.5rem;
+  --primitive-size-guarantee: 4.5rem;
+  --primitive-width-review-price: 3.5rem;
+  --primitive-width-review-sidebar: 22rem;
+  --primitive-width-builder: 74rem;
+  --primitive-border-hairline: 0.5px;
+}
