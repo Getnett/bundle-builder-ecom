@@ -14,6 +14,11 @@ Object.defineProperty(window.HTMLElement.prototype, "scrollIntoView", {
   value: vi.fn(),
 });
 
+Object.defineProperty(window, "scrollTo", {
+  configurable: true,
+  value: vi.fn(),
+});
+
 vi.stubGlobal("requestAnimationFrame", (callback: FrameRequestCallback) => {
   callback(0);
   return 0;

@@ -75,6 +75,11 @@
   --animate-accordion-close: accordion-close
     var(--primitive-motion-accordion-duration)
     var(--primitive-motion-easing-standard);
+  --animate-welcome-reveal: welcome-reveal
+    var(--primitive-motion-welcome-duration)
+    var(--primitive-motion-easing-standard) both;
+  --animate-welcome-float: welcome-float
+    var(--primitive-motion-welcome-float-duration) ease-in-out infinite;
 
   @keyframes accordion-open {
     from {
@@ -93,6 +98,29 @@
 
     to {
       height: 0;
+    }
+  }
+
+  @keyframes welcome-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes welcome-float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-1deg);
+    }
+
+    50% {
+      transform: translateY(-0.5rem) rotate(1deg);
     }
   }
 
