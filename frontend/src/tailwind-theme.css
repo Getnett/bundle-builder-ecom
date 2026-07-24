@@ -69,6 +69,33 @@
 
   --tracking-eyebrow: var(--primitive-text-eyebrow-tracking);
 
+  --animate-accordion-open: accordion-open
+    var(--primitive-motion-accordion-duration)
+    var(--primitive-motion-easing-standard);
+  --animate-accordion-close: accordion-close
+    var(--primitive-motion-accordion-duration)
+    var(--primitive-motion-easing-standard);
+
+  @keyframes accordion-open {
+    from {
+      height: 0;
+    }
+
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-close {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+
+    to {
+      height: 0;
+    }
+  }
+
   --radius-chip: var(--primitive-radius-chip);
   --radius-badge: var(--primitive-radius-badge);
   --radius-control: var(--primitive-radius-control);

@@ -21,7 +21,7 @@ const ProductGrid: FC<ProductGridProps> = ({
         "grid w-full grid-cols-1 gap-4",
         layout === "stacked"
           ? "sm:grid-cols-2 xl:grid-cols-5"
-          : "sm:grid-cols-2 xl:grid-cols-5 2xl:grid-cols-2",
+          : "sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-2",
       )}
     >
       {products.map((product, productIndex) => {
@@ -36,7 +36,7 @@ const ProductGrid: FC<ProductGridProps> = ({
             className={twMerge(
               "h-full min-w-0",
               centerOddCard &&
-                "sm:col-span-2 sm:mx-auto sm:w-[calc(50%-0.5rem)] xl:col-span-1 xl:mx-0 xl:w-auto 2xl:col-span-2 2xl:mx-auto 2xl:w-[calc(50%-0.5rem)]",
+                "sm:col-span-2 sm:mx-auto sm:w-[calc(50%-0.5rem)] lg:col-span-1 lg:mx-0 lg:w-auto xl:col-span-2 xl:mx-auto xl:w-[calc(50%-0.5rem)]",
             )}
           >
             <ProductCard

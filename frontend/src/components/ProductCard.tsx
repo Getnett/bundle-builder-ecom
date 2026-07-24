@@ -63,7 +63,7 @@ const ProductCard: FC<ProductCardProps> = ({
         "relative flex h-full min-h-product-card min-w-0 flex-row gap-3 rounded-card border-2 bg-surface p-3 transition-colors",
         layout === "stacked"
           ? "md:flex-col md:items-stretch"
-          : "md:flex-col md:items-stretch 2xl:flex-row",
+          : "md:flex-col md:items-stretch xl:flex-row",
         selected
           ? "border-2 border-selected"
           : "border-transparent hover:border-border",
@@ -101,7 +101,12 @@ const ProductCard: FC<ProductCardProps> = ({
           ) : null}
         </div>
 
-        <div className="flex shrink-0 items-end justify-between gap-4">
+        <div
+          className={twMerge(
+            "flex shrink-0 items-end justify-between gap-4",
+            layout === "stacked" ? "mt-auto" : "md:mt-auto xl:mt-0",
+          )}
+        >
           <QuantityStepper
             value={quantity}
             onChange={(next) => setQuantity(activeSku, next)}

@@ -60,7 +60,7 @@ const ReviewSelections: FC<ReviewSelectionsProps> = ({
           >
             Plan
           </h3>
-          <div className="grid grid-cols-[2.5rem_minmax(0,1fr)_3.5rem] items-center gap-3 xl:grid-cols-[2.5rem_minmax(0,1fr)_4.5rem] 2xl:grid-cols-[2.5rem_minmax(0,1fr)_3.5rem]">
+          <div className="grid grid-cols-[1.75rem_minmax(0,1fr)_3.5rem] items-center gap-2 lg:grid-cols-[1.75rem_minmax(0,1fr)_4.5rem] xl:grid-cols-[1.75rem_minmax(0,1fr)_3.5rem]">
             <img
               src={plan.reviewIconUrl ?? plan.iconUrl}
               alt=""
@@ -80,7 +80,7 @@ const ReviewSelections: FC<ReviewSelectionsProps> = ({
         </section>
       )}
 
-      <div className="grid grid-cols-[2.5rem_minmax(0,1fr)_3.5rem] items-center gap-3 border-t border-border py-4 xl:grid-cols-[2.5rem_minmax(0,1fr)_4.5rem] 2xl:grid-cols-[2.5rem_minmax(0,1fr)_3.5rem]">
+      <div className="grid grid-cols-[1.75rem_minmax(0,1fr)_3.5rem] items-center gap-2 border-t border-border py-4 lg:grid-cols-[1.75rem_minmax(0,1fr)_4.5rem] xl:grid-cols-[1.75rem_minmax(0,1fr)_3.5rem]">
         <img
           src={shipping.iconUrl}
           alt=""

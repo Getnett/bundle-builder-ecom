@@ -28,7 +28,7 @@ const compareStyles = {
 const priceToneStyles = {
   brand: "text-brand",
   neutral: "text-foreground-muted",
-  promotion: "text-promotion",
+  promotion: "text-foreground-muted",
 } as const;
 
 const PriceTag: FC<PriceTagProps> = ({
@@ -57,7 +57,7 @@ const PriceTag: FC<PriceTagProps> = ({
           className={twMerge(
             "font-medium text-foreground-subtle line-through decoration-1 [text-decoration-skip-ink:none]",
             compareStyles[size],
-            tone === "promotion" && stacked && "order-2",
+            tone === "promotion" && "text-promotion",
           )}
         >
           {formatUSD(compareAtPrice)}
@@ -69,7 +69,6 @@ const PriceTag: FC<PriceTagProps> = ({
           "font-semibold",
           priceStyles[size],
           priceToneStyles[tone],
-          tone === "promotion" && "order-1",
         )}
         data-testid="active-price"
       >

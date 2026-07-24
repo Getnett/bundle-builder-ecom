@@ -1,4 +1,4 @@
-import { bundleCatalog } from "@/test/fixtures";
+import { fetchBundleCatalog } from "@/api/catalog";
 import {
   calculateSummary,
   countSelectedProducts,
@@ -6,17 +6,27 @@ import {
   selectReviewGroups,
 } from "@/bundle-state";
 import { createBundleStore } from "@/store/bundle-store";
-import type { ProductStepDefinition } from "@/types";
-import { describe, expect, it, vi } from "vitest";
+import type {
+  BundleCatalog,
+  ProductStepDefinition,
+} from "@/types";
+import { beforeAll, describe, expect, it, vi } from "vitest";
 
 const storageKey = "bundle-builder:test";
+let bundleCatalog: BundleCatalog;
+
+beforeAll(async () => {
+  bundleCatalog = await fetchBundleCatalog();
+});
+
 const createStore = (key = storageKey) =>
   createBundleStore({ catalog: bundleCatalog, storageKey: key });
 
-const cameraStep = bundleCatalog.steps.find(
-  (step): step is ProductStepDefinition =>
-    step.kind === "products" && step.id === "cameras",
-);
+const getCameraStep = () =>
+  bundleCatalog.steps.find(
+    (step): step is ProductStepDefinition =>
+      step.kind === "products" && step.id === "cameras",
+  );
 
 describe("bundle store configuration", () => {
   it("tracks variant quantities independently and creates separate lines", () => {
@@ -25,7 +35,7 @@ describe("bundle store configuration", () => {
     store.getState().actions.setActiveVariant("cam-v4", "grey");
     expect(
       getActiveSku(
-        cameraStep!.products[0],
+        getCameraStep()!.products[0],
         store.getState().configuration,
       ),
     ).toBe("cam-v4-grey");
@@ -58,7 +68,7 @@ describe("bundle store configuration", () => {
 
     expect(
       countSelectedProducts(
-        cameraStep!.products,
+        getCameraStep()!.products,
         store.getState().configuration,
       ),
     ).toBe(2);

@@ -25,7 +25,7 @@ const PlanCard: FC<PlanCardProps> = ({ plans }) => {
         <RadioGroup.Item
           key={plan.id}
           value={plan.id}
-          className="flex items-center justify-between gap-4 rounded-card border border-border bg-surface p-4 text-left transition-colors hover:border-border-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 data-[state=checked]:border-selected data-[state=checked]:bg-selected-surface"
+          className="flex cursor-pointer items-center justify-between gap-4 rounded-card border border-border bg-surface p-4 text-left transition-colors hover:border-border-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 data-[state=checked]:border-selected data-[state=checked]:bg-selected-surface"
         >
           <span className="flex min-w-0 items-center gap-3">
             <img src={plan.iconUrl} alt="" className="size-step-icon" />

@@ -1,6 +1,6 @@
 import BundleBuilder from "@/components/BundleBuilder";
-import { bundleCatalog } from "@/test/fixtures";
-import type { CartSummary } from "@/types";
+import { fetchBundleCatalog } from "@/api/catalog";
+import type { BundleCatalog, CartSummary } from "@/types";
 import {
   fireEvent,
   render,
@@ -8,7 +8,13 @@ import {
   within,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it, vi } from "vitest";
+import { beforeAll, describe, expect, it, vi } from "vitest";
+
+let bundleCatalog: BundleCatalog;
+
+beforeAll(async () => {
+  bundleCatalog = await fetchBundleCatalog();
+});
 
 const renderBuilder = (
   storageKey: string,

@@ -37,10 +37,10 @@ const ProductDescription: FC<ProductDescriptionProps> = ({
 
   return (
     <>
-      <p className="font-body text-caption text-foreground-muted 2xl:hidden">
+      <p className="font-body text-caption text-foreground-muted xl:hidden">
         {product.description} <LearnMore product={product} />
       </p>
-      <p className="hidden font-body text-caption text-foreground-muted 2xl:block">
+      <p className="hidden font-body text-caption text-foreground-muted xl:block">
         {designLines.map((line, index) => (
           <span key={`${product.id}-${index}`} className="block">
             {line}

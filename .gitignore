@@ -11,6 +11,7 @@ lerna-debug.log*
 .env
 .env.*
 !.env.example
+!frontend/.env.test
 *.local
 
 # Frontend dependencies, builds, and coverage

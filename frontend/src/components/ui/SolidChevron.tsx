@@ -11,7 +11,7 @@ const SolidChevron: FC<SolidChevronProps> = ({ open }) => {
       viewBox="0 0 14 9"
       aria-hidden="true"
       className={twMerge(
-        "size-3.5 shrink-0 text-brand transition-transform",
+        "size-3.5 shrink-0 text-brand transition-transform duration-200 ease-out motion-reduce:transition-none",
         !open && "rotate-180",
       )}
     >

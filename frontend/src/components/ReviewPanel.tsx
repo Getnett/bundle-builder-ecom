@@ -46,7 +46,7 @@ const ReviewPanel: FC<
           "w-full scroll-mt-6 rounded-panel bg-review-surface px-6 py-5 focus:outline-none",
           isStacked
             ? "xl:grid xl:grid-cols-[minmax(0,1.3fr)_minmax(20rem,0.7fr)] xl:gap-12 xl:px-8 xl:py-7"
-            : "xl:grid xl:grid-cols-[minmax(0,1.3fr)_minmax(19rem,0.7fr)] xl:gap-12 xl:px-8 xl:py-7 2xl:block 2xl:max-w-review-sidebar 2xl:px-6 2xl:py-5",
+            : "lg:grid lg:grid-cols-[minmax(0,1.3fr)_minmax(19rem,0.7fr)] lg:gap-12 lg:px-8 lg:py-7 xl:block xl:max-w-review-sidebar xl:px-6 xl:py-5",
         )}
         data-testid="review-panel"
       >

@@ -37,7 +37,7 @@ const QuantityStepper: FC<QuantityStepperProps> = ({
         disabled={value <= min}
         aria-label={`Decrease ${label} quantity`}
         className={twMerge(
-          "inline-flex items-center justify-center rounded-control border border-border bg-surface text-foreground-strong transition-colors hover:border-border-strong disabled:cursor-not-allowed disabled:bg-disabled-surface disabled:text-foreground-faint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-1",
+          "inline-flex cursor-pointer items-center justify-center rounded-control border border-border bg-surface text-foreground-strong transition-colors hover:border-border-strong disabled:cursor-not-allowed disabled:bg-disabled-surface disabled:text-foreground-faint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-1",
           buttonSize,
         )}
       >
@@ -60,7 +60,7 @@ const QuantityStepper: FC<QuantityStepperProps> = ({
         disabled={value >= max}
         aria-label={`Increase ${label} quantity`}
         className={twMerge(
-          "inline-flex items-center justify-center rounded-control border text-foreground-strong transition-colors hover:border-border-strong disabled:cursor-not-allowed disabled:bg-disabled-surface disabled:text-foreground-faint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-1",
+          "inline-flex cursor-pointer items-center justify-center rounded-control border text-foreground-strong transition-colors hover:border-border-strong disabled:cursor-not-allowed disabled:bg-disabled-surface disabled:text-foreground-faint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-1",
           plusVariant === "outline"
             ? "border-border bg-surface"
             : "border-transparent bg-control-surface",

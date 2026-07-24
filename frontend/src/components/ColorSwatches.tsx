@@ -26,7 +26,7 @@ const ColorSwatches: FC<ColorSwatchesProps> = ({
         <RadioGroup.Item
           key={variant.id}
           value={variant.id}
-          className="inline-flex h-variant-chip items-center justify-center gap-1 rounded-chip border border-swatch-border bg-surface px-1 font-body text-eyebrow font-medium text-foreground transition-colors hover:border-border-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-swatch-selected focus-visible:ring-offset-1 data-[state=checked]:border-swatch-selected data-[state=checked]:bg-swatch-selected-surface"
+          className="inline-flex h-variant-chip cursor-pointer items-center justify-center gap-1 rounded-chip border border-swatch-border bg-surface px-1 font-body text-eyebrow font-medium text-foreground transition-colors hover:border-border-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-swatch-selected focus-visible:ring-offset-1 data-[state=checked]:border-swatch-selected data-[state=checked]:bg-swatch-selected-surface"
           aria-label={variant.label}
         >
           <img

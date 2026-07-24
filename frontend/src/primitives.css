@@ -60,6 +60,10 @@
   --primitive-text-hero-size: 1.992rem;
   --primitive-text-hero-line: 1.1;
 
+  /* Motion */
+  --primitive-motion-accordion-duration: 260ms;
+  --primitive-motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
   /* Shape */
   --primitive-radius-chip: 0.125rem;
   --primitive-radius-badge: 0.1875rem;

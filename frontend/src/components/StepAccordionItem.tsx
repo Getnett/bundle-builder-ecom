@@ -1,6 +1,11 @@
 import type { FC } from "react";
 import { Accordion } from "radix-ui";
 import { countSelectedProducts } from "@/bundle-state";
+import {
+  ACCORDION_ANIMATION_DURATION_MS,
+  getPreferredScrollBehavior,
+} from "@/lib/motion";
+import { twMerge } from "@/lib/twMerge";
 import type {
   BundleLayout,
   BundleStepDefinition,
@@ -41,6 +46,24 @@ const StepAccordionItem: FC<StepAccordionItemProps> = ({
   const advance = () => {
     if (nextStepId) {
       setOpenStep(nextStepId);
+      const scrollBehavior = getPreferredScrollBehavior();
+      const scrollToNextStep = () => {
+        document
+          .getElementById(`bundle-step-${nextStepId}`)
+          ?.scrollIntoView({
+            behavior: scrollBehavior,
+            block: "start",
+          });
+      };
+
+      if (scrollBehavior === "auto") {
+        requestAnimationFrame(scrollToNextStep);
+      } else {
+        window.setTimeout(
+          scrollToNextStep,
+          ACCORDION_ANIMATION_DURATION_MS,
+        );
+      }
       return;
     }
     onReview();
@@ -48,10 +71,16 @@ const StepAccordionItem: FC<StepAccordionItemProps> = ({
 
   return (
     <Accordion.Item
+      id={`bundle-step-${step.id}`}
       value={step.id}
-      className="bg-surface data-[state=open]:bg-review-surface [&:not(:last-child)]:border-b [&:not(:last-child)]:border-border"
+      className="scroll-mt-6 border-b border-border bg-surface transition-colors duration-200 ease-out data-[state=open]:bg-review-surface motion-reduce:transition-none"
     >
-      <div className="px-4 pt-3 sm:px-5">
+      <div
+        className={twMerge(
+          "px-4 pt-3 sm:px-5",
+          !isOpen && "border-b border-border pb-3",
+        )}
+      >
         <p className="font-body text-eyebrow font-medium tracking-eyebrow text-foreground-muted uppercase">
           Step {step.stepNumber} of {stepCount}
         </p>
@@ -60,7 +89,7 @@ const StepAccordionItem: FC<StepAccordionItemProps> = ({
       <Accordion.Header className="m-0">
         <Accordion.Trigger
           aria-label={`${step.title}, ${selectedCount} selected`}
-          className="group flex w-full items-center gap-3 px-4 py-3.5 text-left sm:px-5 sm:py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-inset"
+          className="group flex w-full cursor-pointer items-center gap-3 px-4 py-3.5 text-left sm:px-5 sm:py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-inset"
         >
           <span className="flex min-w-0 flex-1 items-center gap-2">
             <img
@@ -81,8 +110,8 @@ const StepAccordionItem: FC<StepAccordionItemProps> = ({
         </Accordion.Trigger>
       </Accordion.Header>
 
-      <Accordion.Content className="overflow-hidden px-4 pb-5 sm:px-5">
-        <div className="flex flex-col items-center gap-4 border-t border-border pt-4">
+      <Accordion.Content className="overflow-hidden data-[state=closed]:animate-accordion-close data-[state=open]:animate-accordion-open motion-reduce:animate-none">
+        <div className="flex flex-col items-center gap-4 border-t border-border px-4 pt-4 pb-5 sm:px-5">
           {step.kind === "products" ? (
             <ProductGrid
               products={step.products}

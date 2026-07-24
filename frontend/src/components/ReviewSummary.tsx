@@ -40,7 +40,7 @@ const ReviewSummary: FC<ReviewSummaryProps> = ({
     <div
       className={twMerge(
         "flex flex-col gap-3",
-        isStacked ? "mt-6 xl:mt-0" : "mt-6 xl:mt-0 2xl:mt-3",
+        isStacked ? "mt-6 xl:mt-0" : "mt-6 lg:mt-0 xl:mt-3",
       )}
     >
       <div
@@ -48,7 +48,7 @@ const ReviewSummary: FC<ReviewSummaryProps> = ({
           "flex gap-4",
           isStacked
             ? "flex-col"
-            : "items-end justify-between xl:flex-col xl:items-stretch 2xl:flex-row 2xl:items-end",
+            : "items-end justify-between lg:flex-col lg:items-stretch xl:flex-row xl:items-end",
         )}
       >
         <div
@@ -56,7 +56,7 @@ const ReviewSummary: FC<ReviewSummaryProps> = ({
             "flex items-center gap-4",
             isStacked
               ? "sm:justify-center"
-              : "xl:justify-center 2xl:justify-start",
+              : "lg:justify-center xl:justify-start",
           )}
         >
           <img
@@ -67,7 +67,7 @@ const ReviewSummary: FC<ReviewSummaryProps> = ({
           <p
             className={twMerge(
               "font-body text-body text-foreground",
-              !isStacked && "hidden xl:block 2xl:hidden",
+              !isStacked && "hidden lg:block xl:hidden",
             )}
           >
             <strong className="font-semibold">{guarantee.title}</strong>
@@ -82,7 +82,7 @@ const ReviewSummary: FC<ReviewSummaryProps> = ({
             "flex items-end gap-3",
             isStacked
               ? "flex-wrap justify-between"
-              : "flex-col xl:flex-row xl:flex-wrap xl:justify-between 2xl:flex-col 2xl:justify-start",
+              : "flex-col lg:flex-row lg:flex-wrap lg:justify-between xl:flex-col xl:justify-start",
           )}
         >
           {financingBadge}

@@ -32,6 +32,9 @@ FastAPI backend.
 
 ## Verify
 
+The frontend test suite requests its catalog from the running FastAPI
+backend; it does not keep a frontend catalog fixture.
+
 ```bash
 npm test
 npm run lint

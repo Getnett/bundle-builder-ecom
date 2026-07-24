@@ -31,7 +31,7 @@ const StepAccordion: FC<StepAccordionProps> = ({
       collapsible
       value={openStepId}
       onValueChange={setOpenStep}
-      className="w-full overflow-hidden rounded-panel border border-border bg-surface"
+      className="w-full bg-surface"
     >
       {steps.map((step, index) => (
         <StepAccordionItem
