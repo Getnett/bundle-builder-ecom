@@ -1,19 +1,23 @@
 import type { FC } from "react";
 import { RadioGroup } from "radix-ui";
 import type { PlanOption } from "@/types";
+import { useBundleStore } from "@/store/useBundleStore";
 import PriceTag from "@/components/PriceTag";
 
 interface PlanCardProps {
   plans: PlanOption[];
-  value: string;
-  onChange: (planId: string) => void;
 }
 
-const PlanCard: FC<PlanCardProps> = ({ plans, value, onChange }) => {
+const PlanCard: FC<PlanCardProps> = ({ plans }) => {
+  const value = useBundleStore(
+    (state) => state.configuration.selectedPlanId,
+  );
+  const setPlan = useBundleStore((state) => state.actions.setPlan);
+
   return (
     <RadioGroup.Root
       value={value}
-      onValueChange={onChange}
+      onValueChange={setPlan}
       aria-label="Protection plan"
       className="grid gap-3 sm:grid-cols-2"
     >

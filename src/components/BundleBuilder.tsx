@@ -1,6 +1,10 @@
+import { useRef } from "react";
 import type { FC } from "react";
 import { DEFAULT_STORAGE_KEY } from "@/bundle-state";
-import { useBundleBuilder } from "@/hooks/useBundleBuilder";
+import {
+  initializeBundleStore,
+  useBundleStore,
+} from "@/store/useBundleStore";
 import type {
   BundleCatalog,
   BundleLayout,
@@ -22,48 +26,56 @@ const BundleBuilder: FC<BundleBuilderProps> = ({
   storageKey = DEFAULT_STORAGE_KEY,
   onCheckout,
 }) => {
-  const {
-    checkout,
-    configuration,
-    focusReview,
-    reviewGroups,
-    reviewRef,
-    saveConfiguration,
-    selectedPlan,
-    setActiveVariant,
-    setOpenStep,
-    setPlan,
-    setQuantity,
-    statusMessage,
-    summary,
-  } = useBundleBuilder(catalog, storageKey, onCheckout);
+  const storeKey = `${catalog.version}:${storageKey}`;
+  initializeBundleStore(catalog, storageKey);
 
+  return (
+    <BundleBuilderContent
+      key={storeKey}
+      catalog={catalog}
+      layout={layout}
+      onCheckout={onCheckout}
+    />
+  );
+};
+
+interface BundleBuilderContentProps {
+  catalog: BundleCatalog;
+  layout: BundleLayout;
+  onCheckout?: (summary: CartSummary) => void;
+}
+
+const BundleBuilderContent: FC<BundleBuilderContentProps> = ({
+  catalog,
+  layout,
+  onCheckout,
+}) => {
+  const reviewRef = useRef<HTMLElement>(null);
+  const setOpenStep = useBundleStore(
+    (state) => state.actions.setOpenStep,
+  );
+  const focusReview = () => {
+    setOpenStep("");
+    requestAnimationFrame(() => {
+      reviewRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+      reviewRef.current?.focus({ preventScroll: true });
+    });
+  };
   const content = (
     <>
       <StepAccordion
         steps={catalog.steps}
-        configuration={configuration}
         layout={layout}
-        onOpenStepChange={setOpenStep}
-        onActiveVariantChange={setActiveVariant}
-        onQuantityChange={setQuantity}
-        onPlanChange={setPlan}
         onReview={focusReview}
       />
       <ReviewPanel
         ref={reviewRef}
         layout={layout}
-        title={catalog.reviewTitle}
-        subtitle={catalog.reviewSubtitle}
-        groups={reviewGroups}
-        plan={selectedPlan}
-        shipping={catalog.shipping}
-        guarantee={catalog.guarantee}
-        summary={summary}
-        statusMessage={statusMessage}
-        onQuantityChange={setQuantity}
-        onCheckout={checkout}
-        onSaveForLater={saveConfiguration}
+        catalog={catalog}
+        onCheckout={onCheckout}
       />
     </>
   );

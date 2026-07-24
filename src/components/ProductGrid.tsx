@@ -1,27 +1,19 @@
 import type { FC } from "react";
 import { twMerge } from "@/lib/twMerge";
 import type {
-  BundleConfiguration,
   BundleLayout,
   ProductDefinition,
-  QuantityChangeHandler,
 } from "@/types";
 import ProductCard from "@/components/ProductCard";
 
 interface ProductGridProps {
   products: ProductDefinition[];
-  configuration: BundleConfiguration;
   layout: BundleLayout;
-  onActiveVariantChange: (productId: string, variantId: string) => void;
-  onQuantityChange: QuantityChangeHandler;
 }
 
 const ProductGrid: FC<ProductGridProps> = ({
   products,
-  configuration,
   layout,
-  onActiveVariantChange,
-  onQuantityChange,
 }) => {
   return (
     <div
@@ -49,10 +41,7 @@ const ProductGrid: FC<ProductGridProps> = ({
           >
             <ProductCard
               product={product}
-              configuration={configuration}
               layout={layout}
-              onActiveVariantChange={onActiveVariantChange}
-              onQuantityChange={onQuantityChange}
             />
           </div>
         );

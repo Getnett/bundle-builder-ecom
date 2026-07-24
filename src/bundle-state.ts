@@ -9,12 +9,37 @@ import type {
 
 export const DEFAULT_STORAGE_KEY = "bundle-builder:configuration:v1";
 
+export interface SkuConstraints {
+  min: number;
+  max: number;
+}
+
 export function getProductSkus(product: ProductDefinition): string[] {
   if (product.variants?.length) {
     return product.variants.map((variant) => variant.sku);
   }
 
-  return product.sku ? [product.sku] : [];
+  return [product.sku ?? product.id];
+}
+
+export function buildSkuIndex(
+  catalog: BundleCatalog,
+): Map<string, SkuConstraints> {
+  return new Map(
+    catalog.steps
+      .filter((step) => step.kind === "products")
+      .flatMap((step) =>
+        step.products.flatMap((product) =>
+          getProductSkus(product).map((sku) => [
+            sku,
+            {
+              min: product.minQuantity ?? 0,
+              max: product.maxQuantity ?? 99,
+            },
+          ] as const),
+        ),
+      ),
+  );
 }
 
 export function getActiveSku(
@@ -75,7 +100,7 @@ function productLines(
       productId: product.id,
       sku: variant.sku,
       name: showVariantLabel
-        ? `${product.name} · ${variant.label}`
+        ? `${product.name} (${variant.label})`
         : product.name,
       imageUrl: variant.imageUrl ?? product.imageUrl,
       quantity: configuration.quantitiesBySku[variant.sku] ?? 0,
@@ -139,30 +164,35 @@ export function calculateSummary(
   );
   const plan = selectPlan(catalog, configuration.selectedPlanId);
 
+  const toCents = (amount: number) => Math.round(amount * 100);
   const productSubtotal = lines.reduce(
-    (total, line) => total + line.unitPrice * line.quantity,
+    (total, line) => total + toCents(line.unitPrice) * line.quantity,
     0,
   );
   const productCompareAt = lines.reduce(
     (total, line) =>
       total +
-      (line.compareAtUnitPrice ?? line.unitPrice) * line.quantity,
+      toCents(line.compareAtUnitPrice ?? line.unitPrice) * line.quantity,
     0,
   );
 
-  const subtotal =
-    productSubtotal + (plan?.price ?? 0) + catalog.shipping.price;
-  const compareAtSubtotal =
+  const subtotalCents =
+    productSubtotal +
+    toCents(plan?.price ?? 0) +
+    toCents(catalog.shipping.price);
+  const compareAtSubtotalCents =
     productCompareAt +
-    (plan?.compareAtPrice ?? plan?.price ?? 0) +
-    (catalog.shipping.contributesToSavings
-      ? (catalog.shipping.compareAtPrice ?? catalog.shipping.price)
-      : catalog.shipping.price);
+    toCents(plan?.compareAtPrice ?? plan?.price ?? 0) +
+    toCents(
+      catalog.shipping.contributesToSavings
+        ? (catalog.shipping.compareAtPrice ?? catalog.shipping.price)
+        : catalog.shipping.price,
+    );
 
   return {
-    subtotal,
-    compareAtSubtotal,
-    savings: Math.max(0, compareAtSubtotal - subtotal),
+    subtotal: subtotalCents / 100,
+    compareAtSubtotal: compareAtSubtotalCents / 100,
+    savings: Math.max(0, compareAtSubtotalCents - subtotalCents) / 100,
     monthlyPrice: catalog.financing.monthlyPrice,
   };
 }
@@ -189,7 +219,6 @@ export function normalizeConfiguration(
   const products = catalog.steps
     .filter((step) => step.kind === "products")
     .flatMap((step) => step.products);
-  const productById = new Map(products.map((product) => [product.id, product]));
 
   const rawQuantities = isRecord(value.quantitiesBySku)
     ? value.quantitiesBySku
@@ -214,22 +243,26 @@ export function normalizeConfiguration(
     ? value.activeVariantByProduct
     : {};
   const activeVariantByProduct = Object.fromEntries(
-    Object.entries(fallback.activeVariantByProduct).map(
-      ([productId, fallbackVariant]) => {
-        const product = productById.get(productId);
-        const rawVariant = rawActiveVariants[productId];
+    products
+      .filter((product) => product.variants?.length)
+      .map((product) => {
+        const fallbackVariant =
+          fallback.activeVariantByProduct[product.id] ??
+          product.variants?.[0]?.id ??
+          "";
+        const rawVariant = rawActiveVariants[product.id];
         const isValid =
           typeof rawVariant === "string" &&
           product?.variants?.some((variant) => variant.id === rawVariant);
-        return [productId, isValid ? rawVariant : fallbackVariant];
-      },
-    ),
+        return [product.id, isValid ? rawVariant : fallbackVariant];
+      }),
   );
 
   return {
     version: 1,
     openStepId:
-      typeof value.openStepId === "string" && stepIds.has(value.openStepId)
+      typeof value.openStepId === "string" &&
+      (value.openStepId === "" || stepIds.has(value.openStepId))
         ? value.openStepId
         : fallback.openStepId,
     selectedPlanId:
@@ -250,7 +283,12 @@ export function readSavedConfiguration(
     return structuredClone(catalog.initialConfiguration);
   }
 
-  const serialized = window.localStorage.getItem(storageKey);
+  let serialized: string | null;
+  try {
+    serialized = window.localStorage.getItem(storageKey);
+  } catch {
+    return structuredClone(catalog.initialConfiguration);
+  }
   if (!serialized) return structuredClone(catalog.initialConfiguration);
 
   try {

@@ -2,11 +2,10 @@ import type { FC } from "react";
 import { Accordion } from "radix-ui";
 import { countSelectedProducts } from "@/bundle-state";
 import type {
-  BundleConfiguration,
   BundleLayout,
   BundleStepDefinition,
-  QuantityChangeHandler,
 } from "@/types";
+import { useBundleStore } from "@/store/useBundleStore";
 import PlanCard from "@/components/PlanCard";
 import ProductGrid from "@/components/ProductGrid";
 import Button from "@/components/ui/Button";
@@ -16,12 +15,7 @@ interface StepAccordionItemProps {
   step: BundleStepDefinition;
   stepCount: number;
   nextStepId?: string;
-  configuration: BundleConfiguration;
   layout: BundleLayout;
-  onOpenStepChange: (stepId: string) => void;
-  onActiveVariantChange: (productId: string, variantId: string) => void;
-  onQuantityChange: QuantityChangeHandler;
-  onPlanChange: (planId: string) => void;
   onReview: () => void;
 }
 
@@ -29,23 +23,24 @@ const StepAccordionItem: FC<StepAccordionItemProps> = ({
   step,
   stepCount,
   nextStepId,
-  configuration,
   layout,
-  onOpenStepChange,
-  onActiveVariantChange,
-  onQuantityChange,
-  onPlanChange,
   onReview,
 }) => {
-  const isOpen = configuration.openStepId === step.id;
-  const selectedCount =
+  const isOpen = useBundleStore(
+    (state) => state.configuration.openStepId === step.id,
+  );
+  const selectedCount = useBundleStore((state) =>
     step.kind === "products"
-      ? countSelectedProducts(step.products, configuration)
-      : Number(Boolean(configuration.selectedPlanId));
+      ? countSelectedProducts(step.products, state.configuration)
+      : Number(Boolean(state.configuration.selectedPlanId)),
+  );
+  const setOpenStep = useBundleStore(
+    (state) => state.actions.setOpenStep,
+  );
 
   const advance = () => {
     if (nextStepId) {
-      onOpenStepChange(nextStepId);
+      setOpenStep(nextStepId);
       return;
     }
     onReview();
@@ -91,17 +86,10 @@ const StepAccordionItem: FC<StepAccordionItemProps> = ({
           {step.kind === "products" ? (
             <ProductGrid
               products={step.products}
-              configuration={configuration}
               layout={layout}
-              onActiveVariantChange={onActiveVariantChange}
-              onQuantityChange={onQuantityChange}
             />
           ) : (
-            <PlanCard
-              plans={step.plans}
-              value={configuration.selectedPlanId}
-              onChange={onPlanChange}
-            />
+            <PlanCard plans={step.plans} />
           )}
           <Button variant="outline" onClick={advance}>
             {step.ctaLabel}

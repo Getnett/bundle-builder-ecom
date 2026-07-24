@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import type {
   PlanOption,
-  QuantityChangeHandler,
   ReviewGroup,
   ShippingDefinition,
 } from "@/types";
@@ -10,13 +9,9 @@ import ReviewLineItem from "@/components/ReviewLineItem";
 
 interface ReviewGroupSectionProps {
   group: ReviewGroup;
-  onQuantityChange: QuantityChangeHandler;
 }
 
-const ReviewGroupSection: FC<ReviewGroupSectionProps> = ({
-  group,
-  onQuantityChange,
-}) => {
+const ReviewGroupSection: FC<ReviewGroupSectionProps> = ({ group }) => {
   return (
     <section
       aria-labelledby={`group-${group.id}`}
@@ -30,11 +25,7 @@ const ReviewGroupSection: FC<ReviewGroupSectionProps> = ({
       </h3>
       <div className="flex flex-col gap-3">
         {group.lines.map((line) => (
-          <ReviewLineItem
-            key={line.sku}
-            line={line}
-            onQuantityChange={onQuantityChange}
-          />
+          <ReviewLineItem key={line.sku} line={line} />
         ))}
       </div>
     </section>
@@ -45,23 +36,17 @@ interface ReviewSelectionsProps {
   groups: ReviewGroup[];
   plan?: PlanOption;
   shipping: ShippingDefinition;
-  onQuantityChange: QuantityChangeHandler;
 }
 
 const ReviewSelections: FC<ReviewSelectionsProps> = ({
   groups,
   plan,
   shipping,
-  onQuantityChange,
 }) => {
   return (
     <div className="flex flex-col">
       {groups.map((group) => (
-        <ReviewGroupSection
-          key={group.id}
-          group={group}
-          onQuantityChange={onQuantityChange}
-        />
+        <ReviewGroupSection key={group.id} group={group} />
       ))}
 
       {plan && (

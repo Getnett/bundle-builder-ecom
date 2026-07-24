@@ -5,6 +5,14 @@ npm install
 npm run dev
 ```
 
+## Verify
+
+```bash
+npm test
+npm run lint
+npm run build
+```
+
 ## Styling architecture
 
 - `src/primitives.css` contains raw Figma values.

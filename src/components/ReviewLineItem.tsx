@@ -1,17 +1,18 @@
 import type { FC } from "react";
-import type { QuantityChangeHandler, ReviewLine } from "@/types";
+import type { ReviewLine } from "@/types";
+import { useBundleStore } from "@/store/useBundleStore";
 import PriceTag from "@/components/PriceTag";
 import QuantityStepper from "@/components/QuantityStepper";
 
 interface ReviewLineItemProps {
   line: ReviewLine;
-  onQuantityChange: QuantityChangeHandler;
 }
 
-const ReviewLineItem: FC<ReviewLineItemProps> = ({
-  line,
-  onQuantityChange,
-}) => {
+const ReviewLineItem: FC<ReviewLineItemProps> = ({ line }) => {
+  const setQuantity = useBundleStore(
+    (state) => state.actions.setQuantity,
+  );
+
   return (
     <div
       className="grid w-full grid-cols-[2.5rem_minmax(0,1fr)_auto_3.5rem] items-center gap-3 xl:grid-cols-[2.5rem_minmax(0,1fr)_auto_4.5rem] 2xl:grid-cols-[2.5rem_minmax(0,1fr)_auto_3.5rem]"
@@ -27,18 +28,12 @@ const ReviewLineItem: FC<ReviewLineItemProps> = ({
       </p>
       <QuantityStepper
         value={line.quantity}
-        onChange={(quantity) =>
-          onQuantityChange(
-            line.sku,
-            quantity,
-            line.minQuantity,
-            line.maxQuantity,
-          )
-        }
+        onChange={(quantity) => setQuantity(line.sku, quantity)}
         min={line.minQuantity}
         max={line.maxQuantity}
         label={line.name}
         size="sm"
+        plusVariant="outline"
       />
       <div className="w-full justify-self-end">
         <PriceTag

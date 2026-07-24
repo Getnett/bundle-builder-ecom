@@ -9,6 +9,7 @@ interface QuantityStepperProps {
   max?: number;
   size?: "sm" | "md";
   label?: string;
+  plusVariant?: "filled" | "outline";
 }
 
 const QuantityStepper: FC<QuantityStepperProps> = ({
@@ -18,6 +19,7 @@ const QuantityStepper: FC<QuantityStepperProps> = ({
   max = 99,
   size = "md",
   label = "quantity",
+  plusVariant = "filled",
 }) => {
   const buttonSize = size === "sm" ? "size-stepper-button" : "size-6";
   const iconSize = size === "sm" ? "size-2.5" : "size-3";
@@ -58,7 +60,10 @@ const QuantityStepper: FC<QuantityStepperProps> = ({
         disabled={value >= max}
         aria-label={`Increase ${label} quantity`}
         className={twMerge(
-          "inline-flex items-center justify-center rounded-control border border-transparent bg-control-surface text-foreground-strong transition-colors hover:border-border disabled:cursor-not-allowed disabled:bg-disabled-surface disabled:text-foreground-faint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-1",
+          "inline-flex items-center justify-center rounded-control border text-foreground-strong transition-colors hover:border-border-strong disabled:cursor-not-allowed disabled:bg-disabled-surface disabled:text-foreground-faint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-1",
+          plusVariant === "outline"
+            ? "border-border bg-surface"
+            : "border-transparent bg-control-surface",
           buttonSize,
         )}
       >

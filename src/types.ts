@@ -1,12 +1,5 @@
 export type BundleLayout = "sidebar" | "stacked";
 
-export type QuantityChangeHandler = (
-  sku: string,
-  quantity: number,
-  minQuantity?: number,
-  maxQuantity?: number,
-) => void;
-
 export interface ProductVariant {
   id: string;
   sku: string;

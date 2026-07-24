@@ -2,15 +2,13 @@ import type { FC } from "react";
 import { twMerge } from "@/lib/twMerge";
 import {
   getActiveSku,
-  getProductQuantity,
   isProductSelected,
 } from "@/bundle-state";
 import type {
-  BundleConfiguration,
   BundleLayout,
   ProductDefinition,
-  QuantityChangeHandler,
 } from "@/types";
+import { useBundleStore } from "@/store/useBundleStore";
 import ColorSwatches from "@/components/ColorSwatches";
 import PriceTag from "@/components/PriceTag";
 import ProductDescription from "@/components/ProductDescription";
@@ -19,28 +17,45 @@ import QuantityStepper from "@/components/QuantityStepper";
 
 interface ProductCardProps {
   product: ProductDefinition;
-  configuration: BundleConfiguration;
   layout: BundleLayout;
-  onActiveVariantChange: (productId: string, variantId: string) => void;
-  onQuantityChange: QuantityChangeHandler;
 }
+
+const isInteractiveTarget = (target: EventTarget | null) =>
+  target instanceof Element &&
+  Boolean(target.closest("a, button, [role='radio']"));
 
 const ProductCard: FC<ProductCardProps> = ({
   product,
-  configuration,
   layout,
-  onActiveVariantChange,
-  onQuantityChange,
 }) => {
-  const selected = isProductSelected(product, configuration);
-  const activeSku = getActiveSku(product, configuration);
-  const quantity = getProductQuantity(product, configuration);
+  const activeVariantId = useBundleStore(
+    (state) =>
+      state.configuration.activeVariantByProduct[product.id] ??
+      product.variants?.[0]?.id,
+  );
+  const activeSku = useBundleStore((state) =>
+    getActiveSku(product, state.configuration),
+  );
+  const quantity = useBundleStore(
+    (state) => state.configuration.quantitiesBySku[activeSku] ?? 0,
+  );
+  const selected = useBundleStore((state) =>
+    isProductSelected(product, state.configuration),
+  );
+  const setActiveVariant = useBundleStore(
+    (state) => state.actions.setActiveVariant,
+  );
+  const setQuantity = useBundleStore(
+    (state) => state.actions.setQuantity,
+  );
   const displayMultiplier = Math.max(1, quantity);
-  const activeVariantId =
-    configuration.activeVariantByProduct[product.id] ??
-    product.variants?.[0]?.id;
   const minQuantity = product.minQuantity ?? 0;
   const maxQuantity = product.maxQuantity ?? 99;
+  const selectProduct = () => {
+    if (quantity === 0) {
+      setQuantity(activeSku, Math.min(maxQuantity, Math.max(1, minQuantity)));
+    }
+  };
 
   return (
     <article
@@ -52,7 +67,11 @@ const ProductCard: FC<ProductCardProps> = ({
         selected
           ? "border-2 border-selected"
           : "border-transparent hover:border-border",
+        quantity === 0 && "cursor-pointer",
       )}
+      onClick={(event) => {
+        if (!isInteractiveTarget(event.target)) selectProduct();
+      }}
       data-selected={selected}
       data-testid={`product-card-${product.id}`}
     >
@@ -75,7 +94,7 @@ const ProductCard: FC<ProductCardProps> = ({
               variants={product.variants}
               value={activeVariantId}
               onChange={(variantId) =>
-                onActiveVariantChange(product.id, variantId)
+                setActiveVariant(product.id, variantId)
               }
               productName={product.name}
             />
@@ -85,9 +104,7 @@ const ProductCard: FC<ProductCardProps> = ({
         <div className="flex shrink-0 items-end justify-between gap-4">
           <QuantityStepper
             value={quantity}
-            onChange={(next) =>
-              onQuantityChange(activeSku, next, minQuantity, maxQuantity)
-            }
+            onChange={(next) => setQuantity(activeSku, next)}
             min={minQuantity}
             max={maxQuantity}
             label={product.name}

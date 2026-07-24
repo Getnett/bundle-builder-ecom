@@ -5,27 +5,15 @@ import type {
   BundleCatalog,
   BundleLayout,
   CartSummary,
-  PlanOption,
-  QuantityChangeHandler,
-  ReviewGroup,
-  ShippingDefinition,
 } from "@/types";
+import useBundleReview from "@/hooks/useBundleReview";
 import ReviewSelections from "@/components/ReviewSelections";
 import ReviewSummary from "@/components/ReviewSummary";
 
 interface ReviewPanelProps {
   layout: BundleLayout;
-  title: string;
-  subtitle: string;
-  groups: ReviewGroup[];
-  plan?: PlanOption;
-  shipping: ShippingDefinition;
-  guarantee: BundleCatalog["guarantee"];
-  summary: CartSummary;
-  statusMessage: string;
-  onQuantityChange: QuantityChangeHandler;
-  onCheckout: () => void;
-  onSaveForLater: () => void;
+  catalog: BundleCatalog;
+  onCheckout?: (summary: CartSummary) => void;
 }
 
 const ReviewPanel: FC<
@@ -34,21 +22,20 @@ const ReviewPanel: FC<
   (
     {
       layout,
-      title,
-      subtitle,
-      groups,
-      plan,
-      shipping,
-      guarantee,
-      summary,
-      statusMessage,
-      onQuantityChange,
+      catalog,
       onCheckout,
-      onSaveForLater,
     },
     ref,
   ) => {
     const isStacked = layout === "stacked";
+    const {
+      checkout,
+      reviewGroups,
+      saveConfiguration,
+      selectedPlan,
+      statusMessage,
+      summary,
+    } = useBundleReview(catalog, onCheckout);
 
     return (
       <section
@@ -72,26 +59,25 @@ const ReviewPanel: FC<
               id="review-heading"
               className="font-heading text-section font-semibold text-foreground"
             >
-              {title}
+              {catalog.reviewTitle}
             </h2>
             <p className="font-body text-caption text-foreground-muted">
-              {subtitle}
+              {catalog.reviewSubtitle}
             </p>
           </header>
           <ReviewSelections
-            groups={groups}
-            plan={plan}
-            shipping={shipping}
-            onQuantityChange={onQuantityChange}
+            groups={reviewGroups}
+            plan={selectedPlan}
+            shipping={catalog.shipping}
           />
         </div>
         <ReviewSummary
           layout={layout}
-          guarantee={guarantee}
+          guarantee={catalog.guarantee}
           summary={summary}
           statusMessage={statusMessage}
-          onCheckout={onCheckout}
-          onSaveForLater={onSaveForLater}
+          onCheckout={checkout}
+          onSaveForLater={saveConfiguration}
         />
       </section>
     );
