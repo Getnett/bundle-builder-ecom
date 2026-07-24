@@ -64,7 +64,7 @@ const ReviewSelections: FC<ReviewSelectionsProps> = ({
             <img
               src={plan.reviewIconUrl ?? plan.iconUrl}
               alt=""
-              className="h-auto w-5 justify-self-center object-contain"
+              className="h-auto w-step-icon justify-self-center object-contain"
             />
             <p className="min-w-0 font-heading text-body font-bold text-foreground">
               {plan.name} <span className="text-brand">{plan.highlight}</span>

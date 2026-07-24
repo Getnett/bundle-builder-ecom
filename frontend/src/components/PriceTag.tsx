@@ -27,7 +27,7 @@ const compareStyles = {
 
 const priceToneStyles = {
   brand: "text-brand",
-  neutral: "text-foreground",
+  neutral: "text-foreground-muted",
   promotion: "text-promotion",
 } as const;
 

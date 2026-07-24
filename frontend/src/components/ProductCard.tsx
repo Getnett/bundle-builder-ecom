@@ -82,8 +82,8 @@ const ProductCard: FC<ProductCardProps> = ({
         layout={layout}
       />
 
-      <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-3">
-        <div className="flex flex-1 flex-col gap-2">
+      <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-2">
+        <div className="flex flex-col gap-2">
           <h3 className="font-heading text-body font-semibold text-foreground">
             {product.name}
           </h3>

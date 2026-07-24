@@ -173,7 +173,7 @@
         {
           "id": "cam-unlimited",
           "iconUrl": "/assets/bundle-builder/icon-plan.svg",
-          "reviewIconUrl": "/assets/bundle-builder/icon-plan.svg",
+          "reviewIconUrl": "/assets/bundle-builder/icon-plan-review.svg",
           "name": "Cam",
           "highlight": "Unlimited",
           "price": 9.99,
