@@ -1,5 +1,5 @@
-import { bundleCatalog } from "@/Data/catalog";
 import BundleBuilder from "@/components/BundleBuilder";
+import { bundleCatalog } from "@/test/fixtures";
 import type { CartSummary } from "@/types";
 import {
   fireEvent,

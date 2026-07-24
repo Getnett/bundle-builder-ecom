@@ -1,4 +1,4 @@
-import { bundleCatalog } from "@/Data/catalog";
+import { bundleCatalog } from "@/test/fixtures";
 import {
   calculateSummary,
   countSelectedProducts,
