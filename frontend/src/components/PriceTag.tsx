@@ -7,7 +7,7 @@ interface PriceTagProps {
   compareAtPrice?: number;
   freeLabel?: string;
   align?: "left" | "right";
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "review" | "card" | "md" | "lg";
   stacked?: boolean;
   suffix?: string;
   tone?: "brand" | "neutral" | "promotion";
@@ -15,14 +15,18 @@ interface PriceTagProps {
 
 const priceStyles = {
   sm: "text-caption",
+  review: "text-body",
+  card: "text-control",
   md: "text-control",
   lg: "text-total font-bold",
 } as const;
 
 const compareStyles = {
   sm: "text-caption",
+  review: "text-body",
+  card: "text-control",
   md: "text-body",
-  lg: "text-control",
+  lg: "text-total-compare",
 } as const;
 
 const priceToneStyles = {
@@ -54,11 +58,14 @@ const PriceTag: FC<PriceTagProps> = ({
     >
       {compareAtPrice != null && compareAtPrice > price && (
         <span
-          className={twMerge(
-            "font-medium text-foreground-subtle line-through decoration-1 [text-decoration-skip-ink:none]",
+          className={`${twMerge(
+            "font-medium line-through decoration-1 [text-decoration-skip-ink:none]",
             compareStyles[size],
-            tone === "promotion" && "text-promotion",
-          )}
+          )} ${
+            tone === "promotion"
+              ? "text-promotion"
+              : "text-foreground-subtle"
+          }`}
         >
           {formatUSD(compareAtPrice)}
           {suffix}

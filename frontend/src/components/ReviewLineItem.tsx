@@ -23,7 +23,7 @@ const ReviewLineItem: FC<ReviewLineItemProps> = ({ line }) => {
         alt=""
         className="size-review-thumbnail rounded-image bg-surface object-contain"
       />
-      <p className="min-w-0 font-heading text-caption font-medium leading-tight text-foreground-strong">
+      <p className="min-w-0 font-heading text-body font-medium leading-tight text-foreground-strong">
         {line.name}
       </p>
       <QuantityStepper
@@ -32,7 +32,7 @@ const ReviewLineItem: FC<ReviewLineItemProps> = ({ line }) => {
         min={line.minQuantity}
         max={line.maxQuantity}
         label={line.name}
-        size="sm"
+        size="review"
         plusVariant="outline"
       />
       <div className="w-full justify-self-end">
@@ -44,7 +44,7 @@ const ReviewLineItem: FC<ReviewLineItemProps> = ({ line }) => {
               : line.compareAtUnitPrice * line.quantity
           }
           freeLabel={line.freeLabel}
-          size="sm"
+          size="review"
           stacked
         />
       </div>

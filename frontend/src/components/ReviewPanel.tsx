@@ -52,16 +52,16 @@ const ReviewPanel: FC<
       >
         <div className="flex min-w-0 flex-col gap-5">
           <header className="flex flex-col gap-1.5">
-            <p className="font-body text-eyebrow font-medium tracking-eyebrow text-foreground-muted uppercase">
+            <p className="font-body text-caption font-medium tracking-eyebrow text-foreground-muted uppercase">
               Review
             </p>
             <h2
               id="review-heading"
-              className="font-heading text-section font-semibold text-foreground"
+              className="font-heading text-step font-semibold text-foreground"
             >
               {catalog.reviewTitle}
             </h2>
-            <p className="font-body text-caption text-foreground-muted">
+            <p className="font-body text-body text-foreground-muted">
               {catalog.reviewSubtitle}
             </p>
           </header>

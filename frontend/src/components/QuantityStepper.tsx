@@ -7,10 +7,33 @@ interface QuantityStepperProps {
   onChange: (next: number) => void;
   min?: number;
   max?: number;
-  size?: "sm" | "md";
+  size?: "sm" | "review" | "card" | "md";
   label?: string;
   plusVariant?: "filled" | "outline";
 }
+
+const sizeStyles = {
+  sm: {
+    button: "size-stepper-button",
+    icon: "size-2.5",
+    value: "text-caption",
+  },
+  review: {
+    button: "size-stepper-button",
+    icon: "size-2.5",
+    value: "text-body",
+  },
+  card: {
+    button: "size-stepper-button",
+    icon: "size-2.5",
+    value: "text-control",
+  },
+  md: {
+    button: "size-6",
+    icon: "size-3",
+    value: "text-control",
+  },
+} as const;
 
 const QuantityStepper: FC<QuantityStepperProps> = ({
   value,
@@ -21,9 +44,7 @@ const QuantityStepper: FC<QuantityStepperProps> = ({
   label = "quantity",
   plusVariant = "filled",
 }) => {
-  const buttonSize = size === "sm" ? "size-stepper-button" : "size-6";
-  const iconSize = size === "sm" ? "size-2.5" : "size-3";
-  const valueSize = size === "sm" ? "text-caption" : "text-control";
+  const sizeStyle = sizeStyles[size];
 
   return (
     <div
@@ -38,11 +59,11 @@ const QuantityStepper: FC<QuantityStepperProps> = ({
         aria-label={`Decrease ${label} quantity`}
         className={twMerge(
           "inline-flex cursor-pointer items-center justify-center rounded-control border border-border bg-surface text-foreground-strong transition-colors hover:border-border-strong disabled:cursor-not-allowed disabled:bg-disabled-surface disabled:text-foreground-faint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-1",
-          buttonSize,
+          sizeStyle.button,
         )}
       >
         <AppIcon
-          className={twMerge(iconSize)}
+          className={twMerge(sizeStyle.icon)}
           name="minus"
           strokeWidth={2.5}
         />
@@ -51,7 +72,7 @@ const QuantityStepper: FC<QuantityStepperProps> = ({
       <span
         className={twMerge(
           "min-w-4 text-center font-body font-medium tabular-nums text-foreground-strong",
-          valueSize,
+          sizeStyle.value,
         )}
         aria-live="polite"
       >
@@ -68,11 +89,11 @@ const QuantityStepper: FC<QuantityStepperProps> = ({
           plusVariant === "outline"
             ? "border-border bg-surface"
             : "border-transparent bg-control-surface",
-          buttonSize,
+          sizeStyle.button,
         )}
       >
         <AppIcon
-          className={twMerge(iconSize)}
+          className={twMerge(sizeStyle.icon)}
           name="plus"
           strokeWidth={2.5}
         />

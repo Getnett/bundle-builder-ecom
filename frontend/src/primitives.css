@@ -55,6 +55,8 @@
   --primitive-text-step-line: 1.625rem;
   --primitive-text-section-size: 1.5rem;
   --primitive-text-section-line: 1.875rem;
+  --primitive-text-total-compare-size: 1.125rem;
+  --primitive-text-total-compare-line: 1.5rem;
   --primitive-text-total-size: 1.5rem;
   --primitive-text-total-line: 2rem;
   --primitive-text-hero-size: 1.992rem;
@@ -84,9 +86,10 @@
   --primitive-size-product-image: 5rem;
   --primitive-size-product-visual: 5.5rem;
   --primitive-size-product-visual-stacked: 7.5rem;
+  --primitive-space-product-card-gap: 0.9375rem;
   --primitive-size-guarantee: 4.5rem;
   --primitive-width-review-price: 3.5rem;
-  --primitive-width-review-sidebar: 22rem;
+  --primitive-width-review-sidebar: 24.9375rem;
   --primitive-width-builder: 74rem;
   --primitive-border-hairline: 0.5px;
 }

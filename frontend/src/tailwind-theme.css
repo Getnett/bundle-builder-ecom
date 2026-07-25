@@ -62,6 +62,10 @@
   --text-step--line-height: var(--primitive-text-step-line);
   --text-section: var(--primitive-text-section-size);
   --text-section--line-height: var(--primitive-text-section-line);
+  --text-total-compare: var(--primitive-text-total-compare-size);
+  --text-total-compare--line-height: var(
+    --primitive-text-total-compare-line
+  );
   --text-total: var(--primitive-text-total-size);
   --text-total--line-height: var(--primitive-text-total-line);
   --text-hero: var(--primitive-text-hero-size);
@@ -142,6 +146,7 @@
   --spacing-product-visual-stacked: var(
     --primitive-size-product-visual-stacked
   );
+  --spacing-product-card-gap: var(--primitive-space-product-card-gap);
   --spacing-guarantee: var(--primitive-size-guarantee);
   --spacing-review-price: var(--primitive-width-review-price);
 

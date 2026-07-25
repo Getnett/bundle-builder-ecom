@@ -89,7 +89,7 @@ const BundleBuilderContent: FC<BundleBuilderContentProps> = ({
 
       {layout === "sidebar" ? (
         <div
-          className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_22rem] xl:items-start"
+          className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_var(--container-review-sidebar)] xl:items-start"
           data-layout="sidebar"
         >
           {content}

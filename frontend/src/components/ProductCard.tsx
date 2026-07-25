@@ -84,7 +84,7 @@ const ProductCard: FC<ProductCardProps> = ({
 
       <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-2">
         <div className="flex flex-col gap-2">
-          <h3 className="font-heading text-body font-semibold text-foreground">
+          <h3 className="font-heading text-control font-semibold text-foreground">
             {product.name}
           </h3>
           <ProductDescription product={product} layout={layout} />
@@ -113,7 +113,7 @@ const ProductCard: FC<ProductCardProps> = ({
             min={minQuantity}
             max={maxQuantity}
             label={product.name}
-            size="sm"
+            size="card"
           />
           <PriceTag
             price={product.unitPrice * displayMultiplier}
@@ -124,7 +124,7 @@ const ProductCard: FC<ProductCardProps> = ({
             }
             freeLabel={product.freeLabel}
             stacked
-            size="sm"
+            size="card"
             tone={
               product.compareAtUnitPrice == null ? "neutral" : "promotion"
             }

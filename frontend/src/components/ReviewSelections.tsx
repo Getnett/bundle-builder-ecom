@@ -66,14 +66,14 @@ const ReviewSelections: FC<ReviewSelectionsProps> = ({
               alt=""
               className="h-auto w-step-icon justify-self-center object-contain"
             />
-            <p className="min-w-0 font-heading text-body font-bold text-foreground">
+            <p className="min-w-0 font-heading text-control font-bold text-foreground">
               {plan.name} <span className="text-brand">{plan.highlight}</span>
             </p>
             <PriceTag
               price={plan.price}
               compareAtPrice={plan.compareAtPrice}
               suffix="/mo"
-              size="sm"
+              size="review"
               stacked
             />
           </div>
@@ -93,7 +93,7 @@ const ReviewSelections: FC<ReviewSelectionsProps> = ({
           price={shipping.price}
           compareAtPrice={shipping.compareAtPrice}
           freeLabel={shipping.freeLabel}
-          size="sm"
+          size="review"
           stacked
         />
       </div>
