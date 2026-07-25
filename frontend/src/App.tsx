@@ -4,9 +4,15 @@ import { fetchBundleCatalog } from "@/api/catalog";
 import BundleBuilder from "@/components/BundleBuilder";
 import CatalogLoadState from "@/components/CatalogLoadState";
 import WelcomePage from "@/components/WelcomePage";
+import {
+  hasSeenWelcome,
+  markWelcomeSeen,
+} from "@/lib/welcome-state";
 
 const App: FC = () => {
-  const [hasEnteredBuilder, setHasEnteredBuilder] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(
+    () => !hasSeenWelcome(),
+  );
   const {
     data: catalog,
     error,
@@ -19,13 +25,14 @@ const App: FC = () => {
   });
 
   const enterBuilder = () => {
-    setHasEnteredBuilder(true);
+    markWelcomeSeen();
+    setShowWelcome(false);
     requestAnimationFrame(() => {
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     });
   };
 
-  if (!hasEnteredBuilder) {
+  if (showWelcome) {
     return (
       <WelcomePage
         catalogReady={Boolean(catalog)}
