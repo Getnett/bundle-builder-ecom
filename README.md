@@ -16,9 +16,6 @@ The repository contains two independent applications:
 - Every product variant has an independent quantity keyed by SKU. Changing the
   active variant changes which quantity the card controls without modifying
   the other variants.
-- Product cards and review rows are synchronized views of one Zustand store.
-  Review groups, selection counts, and totals are derived instead of stored as
-  duplicate state.
 - Saving is explicit. The bundle is written to `localStorage` only when the
   shopper selects **Save my system for later**.
 - The catalog comes from the FastAPI backend.
