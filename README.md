@@ -22,6 +22,8 @@ The repository contains two independent applications:
 - Saving is explicit. The bundle is written to `localStorage` only when the
   shopper selects **Save my system for later**.
 - The catalog comes from the FastAPI backend.
+- Backend unit and compare-at prices are authoritative. Discount badges are
+  display-only, and totals are calculated in integer cents.
 - Smaller desktop and tablet viewports use the stacked layout.
 
 ## Additional features
