@@ -34,6 +34,7 @@ const ReviewLineItem: FC<ReviewLineItemProps> = ({ line }) => {
         label={line.name}
         size="review"
         plusVariant="outline"
+        bordered={line.minQuantity > 0}
       />
       <div className="w-full justify-self-end">
         <PriceTag

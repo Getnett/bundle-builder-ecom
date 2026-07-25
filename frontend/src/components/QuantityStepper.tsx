@@ -10,6 +10,7 @@ interface QuantityStepperProps {
   size?: "sm" | "review" | "card" | "md";
   label?: string;
   plusVariant?: "filled" | "outline";
+  bordered?: boolean;
 }
 
 const sizeStyles = {
@@ -43,6 +44,7 @@ const QuantityStepper: FC<QuantityStepperProps> = ({
   size = "md",
   label = "quantity",
   plusVariant = "filled",
+  bordered = true,
 }) => {
   const sizeStyle = sizeStyles[size];
 
@@ -58,7 +60,10 @@ const QuantityStepper: FC<QuantityStepperProps> = ({
         disabled={value <= min}
         aria-label={`Decrease ${label} quantity`}
         className={twMerge(
-          "inline-flex cursor-pointer items-center justify-center rounded-control border border-border bg-surface text-foreground-strong transition-colors hover:border-border-strong disabled:cursor-not-allowed disabled:bg-disabled-surface disabled:text-foreground-faint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-1",
+          "inline-flex cursor-pointer items-center justify-center rounded-control bg-surface text-foreground-strong transition-colors disabled:cursor-not-allowed disabled:bg-disabled-surface disabled:text-foreground-faint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-1",
+          bordered
+            ? "border border-border hover:border-border-strong"
+            : "border-0",
           sizeStyle.button,
         )}
       >
@@ -85,10 +90,20 @@ const QuantityStepper: FC<QuantityStepperProps> = ({
         disabled={value >= max}
         aria-label={`Increase ${label} quantity`}
         className={twMerge(
-          "inline-flex cursor-pointer items-center justify-center rounded-control border text-foreground-strong transition-colors hover:border-border-strong disabled:cursor-not-allowed disabled:bg-disabled-surface disabled:text-foreground-faint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-1",
-          plusVariant === "outline"
-            ? "border-border bg-surface"
-            : "border-transparent bg-control-surface",
+          "inline-flex cursor-pointer items-center justify-center rounded-control text-foreground-strong transition-colors disabled:cursor-not-allowed disabled:bg-disabled-surface disabled:text-foreground-faint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-1",
+          bordered
+            ? twMerge(
+                "border hover:border-border-strong",
+                plusVariant === "outline"
+                  ? "border-border bg-surface"
+                  : "border-transparent bg-control-surface",
+              )
+            : twMerge(
+                "border-0",
+                plusVariant === "outline"
+                  ? "bg-surface"
+                  : "bg-control-surface",
+              ),
           sizeStyle.button,
         )}
       >
