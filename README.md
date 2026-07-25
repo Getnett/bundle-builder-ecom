@@ -21,6 +21,8 @@ The repository contains two independent applications:
 - The catalog comes from the FastAPI backend.
 - Backend unit and compare-at prices are authoritative. Discount badges are
   display-only, and totals are calculated in integer cents.
+- Review steppers are borderless for optional products. Required products,
+  identified by `minQuantity > 0`, retain bordered controls.
 - Smaller desktop and tablet viewports use the stacked layout.
 
 ## Additional features
