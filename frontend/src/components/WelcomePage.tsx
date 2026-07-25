@@ -1,11 +1,8 @@
 import type { FC } from "react";
-import {
-  ArrowRight,
-  BadgeDollarSign,
-  ListChecks,
-  Save,
-} from "lucide-react";
 import Button from "@/components/ui/Button";
+import AppIcon, {
+  type AppIconName,
+} from "@/components/ui/AppIcon";
 import ShoppingBagMark from "@/components/ui/ShoppingBagMark";
 
 interface WelcomePageProps {
@@ -17,21 +14,25 @@ interface WelcomePageProps {
 
 const benefits = [
   {
-    icon: ListChecks,
+    icon: "listChecks",
     title: "Guided in four steps",
     description: "Choose only what fits your home.",
   },
   {
-    icon: BadgeDollarSign,
+    icon: "badgeDollarSign",
     title: "Clear, live pricing",
     description: "See totals and savings as you build.",
   },
   {
-    icon: Save,
+    icon: "save",
     title: "Save and return",
     description: "Pick up exactly where you left off.",
   },
-] as const;
+] as const satisfies ReadonlyArray<{
+  icon: AppIconName;
+  title: string;
+  description: string;
+}>;
 
 const WelcomePage: FC<WelcomePageProps> = ({
   catalogReady,
@@ -58,13 +59,13 @@ const WelcomePage: FC<WelcomePageProps> = ({
       </p>
 
       <div className="mt-9 grid w-full gap-3 text-left sm:grid-cols-3">
-        {benefits.map(({ icon: Icon, title, description }) => (
+        {benefits.map(({ icon, title, description }) => (
           <article
             key={title}
             className="flex items-start gap-3 rounded-panel border border-border bg-review-surface p-4"
           >
             <span className="rounded-control bg-surface p-2 text-brand">
-              <Icon aria-hidden="true" className="h-5 w-5" />
+              <AppIcon className="h-5 w-5" name={icon} />
             </span>
             <span>
               <strong className="block font-heading text-body font-semibold text-foreground">
@@ -100,7 +101,7 @@ const WelcomePage: FC<WelcomePageProps> = ({
                 ? "Build my security system"
                 : "Preparing your experience…"}
               {catalogReady && (
-                <ArrowRight aria-hidden="true" className="h-5 w-5" />
+                <AppIcon className="h-5 w-5" name="arrowRight" />
               )}
             </Button>
             <p

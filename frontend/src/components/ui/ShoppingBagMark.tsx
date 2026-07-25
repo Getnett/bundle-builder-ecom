@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { Sparkles } from "lucide-react";
+import AppIcon from "@/components/ui/AppIcon";
 
 const ShoppingBagMark: FC = () => (
   <div
@@ -11,7 +11,10 @@ const ShoppingBagMark: FC = () => (
     <div className="absolute inset-x-5 bottom-3 flex h-20 -rotate-3 items-center justify-center rounded-card bg-success shadow-lg">
       <span className="font-heading text-5xl font-bold text-on-brand">S</span>
     </div>
-    <Sparkles className="absolute -top-1 right-1 h-7 w-7 text-brand" />
+    <AppIcon
+      className="absolute -top-1 right-1 h-7 w-7 text-brand"
+      name="sparkles"
+    />
     <span className="absolute right-0 bottom-5 h-3 w-3 rounded-full bg-promotion" />
   </div>
 );

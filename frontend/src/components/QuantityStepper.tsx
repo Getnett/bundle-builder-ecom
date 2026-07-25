@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { Minus, Plus } from "lucide-react";
+import AppIcon from "@/components/ui/AppIcon";
 import { twMerge } from "@/lib/twMerge";
 
 interface QuantityStepperProps {
@@ -41,7 +41,11 @@ const QuantityStepper: FC<QuantityStepperProps> = ({
           buttonSize,
         )}
       >
-        <Minus className={twMerge(iconSize)} strokeWidth={2.5} />
+        <AppIcon
+          className={twMerge(iconSize)}
+          name="minus"
+          strokeWidth={2.5}
+        />
       </button>
 
       <span
@@ -67,7 +71,11 @@ const QuantityStepper: FC<QuantityStepperProps> = ({
           buttonSize,
         )}
       >
-        <Plus className={twMerge(iconSize)} strokeWidth={2.5} />
+        <AppIcon
+          className={twMerge(iconSize)}
+          name="plus"
+          strokeWidth={2.5}
+        />
       </button>
     </div>
   );
